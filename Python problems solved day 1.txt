@@ -1,0 +1,65 @@
+1.Kadane's Algorithm
+    def maxSubArraySum(self, arr):
+        max_sum = current_sum = arr[0]
+
+        for num in arr[1:]:
+            current_sum = max(num, current_sum + num)
+            max_sum = max(max_sum, current_sum)
+
+        return max_sum
+
+2.Array Leaders:
+    def leaders(self,n, arr):
+        l=[]
+        for i in range(0,n):
+            flag=0
+            for j in range(i+1,n):
+                if arr[i]<arr[j]:
+                    flag=1
+                    break
+            if flag==0:
+                l.append(arr[i])
+        return l  
+
+3.Second Largest:
+    def print2largest(self, arr):
+        largest = None
+        second_largest = None
+    
+        for num in arr:
+            if largest is None or num > largest:
+                second_largest = largest
+                largest = num
+            elif num != largest and (second_largest is None or num > second_largest):
+                second_largest = num
+    
+        return second_largest if second_largest is not None else -1
+
+4.Union of two arrays:
+    def doUnion(self,arr1,arr2):
+        arr1.extend(arr2)
+        return len(set(arr1))
+
+5.Palindrome String:
+	def isPalindrome(self, S):
+		if S==S[::-1]:
+		    return 1
+		else:
+		    return 0
+
+6.Binary Search:
+    def binarysearch(self, arr, k):
+        return self.binary_search_recursive(arr, k, 0, len(arr) - 1)
+    
+    def binary_search_recursive(self, arr, k, left, right):
+        if left > right:
+            return -1
+        
+        mid = left + (right - left) // 2
+        
+        if arr[mid] == k:
+            return mid
+        elif arr[mid] > k:
+            return self.binary_search_recursive(arr, k, left, mid - 1)
+        else:
+            return self.binary_search_recursive(arr, k, mid + 1, right)
